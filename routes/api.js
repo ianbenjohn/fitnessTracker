@@ -24,4 +24,24 @@ router.put("/api/workouts/:id", ({ body , params }, res) => {
     .catch(err => {
         res.json(err);
     });
-})
+});
+
+router.get("/api/workouts", (req, res) => {
+    Workout.find()
+    .then(dbWorkout => {
+        res.json(dbWorkout);
+    });
+});
+
+router.get("/api/workouts/range", (req, res) => {
+    Workout.find({}).limit(7)
+    .then(dbWorkouts => {
+        res,json(dbWorkout),
+        console.log(dbWorkout)
+    })
+    .catch(err => {
+        res.status(400).json(err);
+    });
+});
+
+module.exports = router
